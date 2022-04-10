@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const BlogDetails = ({ post }) => {
@@ -12,13 +11,11 @@ const BlogDetails = ({ post }) => {
                 <Link href="/">
                   <a className="btn btn-primary"> Back</a>
                 </Link>
-                &nbsp;&nbsp;
                 {post.title.rendered}
               </h1>
-              <Image
-                width={500}
-                height={250}
-                layout="responsive"
+              <img
+                width="100%"
+                height="auto"
                 src={post.image}
                 alt="Card image cap"
               />
@@ -67,8 +64,6 @@ export const getStaticProps = async (context) => {
     data[key].authorName = authorData.name;
   }
 
-  console.log(data);
-
   return {
     props: {
       post: data[0],
@@ -79,13 +74,11 @@ export const getStaticProps = async (context) => {
 export const getStaticPaths = async () => {
   const res = await fetch("http://wp.socialubiquity.local/wp-json/wp/v2/posts");
   const data = await res.json();
-  //   console.log(data);
-
   const slugs = data.map((post) => ({ params: { slug: post.slug } }));
 
   return {
     paths: slugs,
-    fallback: true,
+    fallback: false,
   };
 };
 

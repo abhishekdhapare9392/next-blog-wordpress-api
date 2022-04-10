@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const HomePage = ({ posts }) => {
   return (
     <>
@@ -18,10 +16,9 @@ const HomePage = ({ posts }) => {
             {posts.map((post) => (
               <div className="col-12 col-sm-12 col-md-4 col-lg-4" key={post.id}>
                 <div className="card h-100">
-                  <Image
-                    width={500}
-                    height={300}
-                    layout="responsive"
+                  <img
+                    width="100%"
+                    height="auto"
                     src={post.image}
                     alt="Card image cap"
                   />
